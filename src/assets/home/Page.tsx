@@ -19,7 +19,7 @@ import {
 const LIME = "bg-[#d2ff00] text-neutral-900 hover:bg-[#c2ee00]";
 const BLUE_BG = "bg-[#0b34e6]";
 const BLUE_TXT = "text-[#0b34e6]";
-const H = "font-[family-name:var(--font-poppins)]";
+const H = "font-[family-name:var(--font-satoshi)]";
 const img = (n: string) => {
   if (!n) return "";
 
@@ -52,8 +52,8 @@ const categories = [
 ];
 
 const courses = [
-  { src: "1.jpg", title: "Learn Figma from Basic", cats: ["UI/UX Design", "Graphic Design"] },
-  { src: "2.png", title: "Build Digital Asset", cats: ["Digital Illustration", "Graphic Design"] },
+  { src: "3.jpg", title: "Learn Figma from Basic", cats: ["UI/UX Design", "Graphic Design"] },
+  { src: "1.jpg", title: "Build Digital Asset", cats: ["Digital Illustration", "Graphic Design"] },
   { src: "4.jpg", title: "the Power of Big Data", cats: ["Data Science", "Web Development"] },
   { src: "5.jpg", title: "Balancing Productivity and Life", cats: ["Productivity"] },
   { src: "6.jpg", title: "Mastering Money Management", cats: ["Freelance & Entrepreneurship", "Productivity"] },
@@ -167,7 +167,7 @@ function AvatarStack({ ids, size = "w-7", extra = "2K+" }: { ids: string[]; size
           <img src={img(id)} alt="" className={`${size} object-cover`} />
         </div>
       ))}
-      <div className={`grid place-items-center rounded-full border-2 border-white bg-[#d2ff00] text-[10px] font-semibold text-neutral-900 ${size}`}>
+      <div className={`grid place-items-center p-1 rounded-full bg-[#d2ff00] text-[10px] font-semibold text-neutral-900 ${size}`}>
         <span>{extra}</span>
       </div>
     </div>
@@ -241,7 +241,12 @@ export default function App() {
         <div className="absolute -right-4 top-20 hidden h-40 w-24 rounded-2xl bg-[#d2ff00] md:block" />
 
         <div className="relative z-10 mx-auto max-w-5xl px-6 pt-10 text-center">
-          <h1 className={`${H} text-4xl font-semibold md:text-6xl`}>Get Access to Hundreds Courses Available</h1>
+          <h1
+            className="text-center text-[72px] font-[600] leading-[120%] tracking-[-1%] text-white"
+            style={{ fontFamily: 'Poppins, "Segoe UI", sans-serif' }}
+          >
+            Get Access to Hundreds Courses Available
+          </h1>
           <p className="mx-auto mt-4 max-w-xl text-sm text-white/80">
             Unlock your creativity, gain valuable knowledge, and grow your business with our wide range of courses.
           </p>
@@ -283,7 +288,243 @@ export default function App() {
         </div>
       </section>
 
-      
+      <section className="bg-neutral-100 py-8">
+        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-12 gap-y-4 px-6 text-neutral-500">
+          {[Waves, Zap, Orbit, Globe2, Circle].map((Icon, index) => (
+            <span key={index} className={`${H} flex items-center gap-2 text-lg font-medium`}>
+              <Icon className="size-5" />
+              Logoipsum
+            </span>
+          ))}
+        </div>
+      </section>
+
+      <section id="courses" className="mx-auto max-w-5xl px-6 py-20 text-center">
+        <h2 className={`${H} text-3xl font-semibold md:text-4xl`}>Discover Your Passion,<br />Build Your Skills</h2>
+        <p className="mx-auto mt-4 max-w-2xl text-sm text-neutral-500">
+          At Bytespace Courses, we bring you closer to life-changing knowledge. Explore a variety of courses across different fields,
+          from technology to the arts, and make a difference in your career and life.
+        </p>
+
+        <div className="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-2">
+          {categories.map((category) => {
+            const isFeatured = category === "Featured";
+            return (
+              <Button
+                key={category}
+                onClick={isFeatured ? () => setActive(category) : undefined}
+                disabled={!isFeatured}
+                className={`h-8 rounded-full px-4 text-xs font-normal shadow-none ${
+                  active === category && isFeatured ? LIME : "bg-neutral-100 text-neutral-600"
+                } ${!isFeatured ? "cursor-default opacity-80" : "hover:bg-neutral-200"}`}
+              >
+                {category}
+              </Button>
+            );
+          })}
+          <Button className={`h-8 rounded-full px-4 text-xs ${BLUE_TXT}`} disabled>+ More</Button>
+        </div>
+
+        <div className="mt-12 grid gap-6 text-left sm:grid-cols-2 lg:grid-cols-3">
+          {visible.map((course) => (
+            <Card key={course.title} className="gap-0 overflow-hidden border border-neutral-200 p-3 shadow-md">
+              <div className="relative h-40 overflow-hidden rounded-xl">
+                <img src={img(course.src)} alt={course.title} className="h-full w-full object-cover" />
+                <div className="absolute inset-x-2 bottom-2 flex gap-1.5">
+                  {["17 Lessons", "2 hours 16 mins", "59 Comments"].map((detail) => (
+                    <Badge key={detail} className="bg-white/70 text-[10px] font-normal text-neutral-600 backdrop-blur">
+                      {detail}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+
+              <CardContent className="space-y-2 px-1 pt-3">
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className={`${H} truncate text-sm font-semibold`}>{course.title}</h3>
+                  <Rating />
+                </div>
+                <p className="text-[11px] text-neutral-500">
+                  by <span className={BLUE_TXT}>purepearl studio</span>
+                </p>
+                <div className="flex items-center gap-3">
+                  <Badge className="text-[10px] font-normal">Beginner</Badge>
+                  <AvatarStack ids={["17.png", "18.png", "20.jpg", "26.png"]} size="w-6" extra="26+" />
+                </div>
+                <p className={`${H} text-sm font-semibold ${BLUE_TXT}`}>
+                  $25<span className="text-[10px] font-normal text-neutral-400">/lifetime</span>
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+
+          {visible.length === 0 && <p className="col-span-full py-10 text-center text-neutral-500">No courses in this category yet.</p>}
+        </div>
+      </section>
+
+      <section id="paths" className="mx-auto max-w-5xl px-6 pb-20 text-center">
+        <h2 className={`${H} text-2xl font-semibold md:text-3xl`}>Explore Diverse Learning Paths at Bytespace</h2>
+        <p className="mx-auto mt-4 max-w-2xl text-sm text-neutral-500">
+          At Bytespace, we believe in empowering individuals through knowledge. Our diverse range of courses spans various fields,
+          ensuring there&apos;s something for everyone. Unleash your potential and explore our carefully curated categories.
+        </p>
+
+        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+          {paths.map(({ label, Icon }) => (
+            <Card key={label} className="items-center gap-3 border border-neutral-200 py-5 shadow-md">
+              <span className="grid size-10 place-items-center rounded-full bg-[#d2ff00]">
+                <Icon className="size-5" />
+              </span>
+              <span className="text-sm">{label}</span>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className={`${gradientBg} py-24`}>
+        <div className="mx-auto grid max-w-5xl items-center gap-12 px-6 md:grid-cols-2">
+          <div>
+            <h2 className={`${H} text-3xl font-semibold md:text-4xl`}>Your Path to Professional Growth Starts Here!</h2>
+            <p className="mt-5 max-w-sm text-sm text-neutral-500">
+              Explore our curated selection of courses tailored to enhance your capabilities and accelerate your career journey. Whether you
+              are looking to sharpen specific skills, gain industry expertise, or embark on a new career path entirely, we have the resources
+              you need.
+            </p>
+
+            <div className="mt-6 flex gap-8">
+              {[["12K", "Students"], ["70+", "Courses"], ["16", "Creators"]].map(([value, label]) => (
+                <div key={label as string} className="min-w-0">
+                  <div className={`text-2xl font-semibold ${BLUE_TXT}`}>{value}</div>
+                  <div className="text-xs text-neutral-500">{label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative mx-auto h-[420px] w-full max-w-md">
+            <Card className="absolute right-0 top-0 w-64 gap-0 rounded-2xl p-3 shadow-xl">
+              <div className="relative h-32 overflow-hidden rounded-xl">
+                <img src={img("3.jpg")} alt="" className="h-full w-full object-cover" />
+              </div>
+              <p className={`${H} mt-3 text-sm font-semibold`}>Learn Figma from Basic</p>
+              <p className="text-[11px] text-neutral-500">
+                by <span className={BLUE_TXT}>purepearl studio</span>
+              </p>
+              <p className={`${H} mt-1 text-sm font-semibold ${BLUE_TXT}`}>
+                $25<span className="text-[10px] font-normal text-neutral-400">/lifetime</span>
+              </p>
+            </Card>
+
+            <img src={img("2.png")} alt="Student with laptop" className="absolute -bottom-6 left-10 w-80 drop-shadow-[0_30px_30px_rgba(0,0,0,.3)]" />
+            <Squiggle className="absolute right-0 top-24 w-16" />
+
+            <FloatCard className="bottom-24 right-0 w-40 text-neutral-900">
+              <p className="text-[11px] text-neutral-500">Learning Progress</p>
+              <p className={`${H} text-2xl font-semibold`}>55%</p>
+              <Progress value={55} className="mt-1 h-1.5" />
+            </FloatCard>
+          </div>
+        </div>
+      </section>
+
+      <section id="creators" className={`${gradientBg} pb-24`}>
+        <div className="mx-auto grid max-w-5xl items-center gap-12 px-6 md:grid-cols-2">
+          <div className="relative mx-auto h-[420px] w-full max-w-sm">
+            <img src={img("8.png")} alt="Creator with tablet" className="absolute bottom-0 left-8 w-72" />
+            <Squiggle className="absolute left-32 top-16 w-16" />
+
+            <div className={`absolute left-0 top-24 z-10 w-36 rounded-lg ${BLUE_BG} p-3 text-white shadow-xl`}>
+              <p className="text-[10px] text-white/70">Total Revenue<br />July 1-28</p>
+              <p className={`${H} text-lg font-semibold`}>$120.29</p>
+              <Progress value={60} className="mt-1 h-1 bg-white/30" />
+            </div>
+
+            <div className={`absolute left-0 top-52 z-10 w-28 rounded-lg ${BLUE_BG} p-3 text-white shadow-xl`}>
+              <p className="text-[10px] text-white/70">Year to Date<br />2022</p>
+              <p className={`${H} text-sm font-semibold`}>$1,200.38</p>
+              <span className="mt-1 inline-block rounded-full bg-[#d2ff00] px-2 text-[9px] font-medium text-neutral-900">+16%</span>
+            </div>
+
+            <FloatCard className="-right-2 bottom-8 z-10 text-neutral-900">
+              <p className="text-xs font-semibold">Happy Students</p>
+              <Rating reviews="240" />
+              <div className="mt-1"><AvatarStack ids={["25.png", "27.png", "28.png", "30.png"]} size="w-6" /></div>
+            </FloatCard>
+          </div>
+
+          <div>
+            <h2 className={`${H} text-3xl font-semibold md:text-4xl`}>Create &amp; Manage<br />Courses Easily.</h2>
+            <p className="mt-5 max-w-sm text-sm text-neutral-500">
+              <b className="text-neutral-800">ByteSpace</b> supports individuals or entities in the creation, publication, and administration of educational courses.
+            </p>
+            <ul className="mt-5 space-y-3 text-sm">
+              {["Share Your Expertise", "Monetize Your Passion", "Flexibility and Autonomy", "Build a Community"].map((item) => (
+                <li key={item} className="flex items-center gap-2">
+                  <CheckCircle2 className={`size-4 ${BLUE_TXT}`} />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className={`relative overflow-hidden ${BLUE_BG} py-20 text-center text-white`}>
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.09) 1px,transparent 1px)",
+            backgroundSize: "72px 72px",
+          }}
+        />
+
+        <Squiggle color="#fff" className="absolute left-10 top-6 hidden w-14 md:block" />
+        <Squiggle className="absolute bottom-0 right-[22%] hidden w-20 md:block" />
+        <Cone className="absolute -left-4 bottom-10 w-24 text-white" />
+        <Cone className="absolute right-[18%] top-4 hidden w-24 -rotate-12 text-[#d2ff00] md:block" />
+        <div className="absolute -right-6 top-4 hidden h-40 w-24 rounded-2xl bg-white md:block" />
+
+        <div className="relative mx-auto max-w-2xl px-6">
+          <h2 className={`${H} text-3xl font-semibold md:text-4xl`}>Unlock Your Potential as a Creator with ByteSpace</h2>
+          <p className="mt-5 text-sm text-white/80">
+            Experience the collaboration of numerous creators and an expanding selection of courses. Register now and become a part of a
+            community comprising over 10,000 local and international creators. Utilize our Course Editor, and showcase your expertise by
+            publishing your finest course on the ByteSpace Course Library.
+          </p>
+          <Button className={`mt-6 rounded-full ${LIME}`}>Join as Creator</Button>
+        </div>
+      </section>
+
+      <section className={`${gradientBg} py-24`}>
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="grid items-start gap-6 md:grid-cols-2">
+            <h2 className={`${H} text-3xl font-semibold md:text-4xl`}>Discover What Our<br />Community Is Saying</h2>
+            <p className="text-sm text-neutral-500">
+              At ByteSpace, our vibrant community of learners and creators is at the heart of what we do. Hear directly from those who have
+              experienced the transformative journey of learning and creating on our platform. Explore testimonials that reflect the diverse
+              perspectives of enthusiastic learners and accomplished creators.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {testimonials.map((testimonial) => (
+              <Card key={testimonial.name} className="gap-3 border border-neutral-200 p-6 shadow-md">
+                <div className="flex items-center gap-3">
+                  <div className="overflow-hidden rounded-full">
+                    <img src={img(testimonial.src)} alt={testimonial.name} className="h-10 w-10 rounded-full object-cover" />
+                  </div>
+                  <div>
+                    <p className={`${H} text-sm font-semibold`}>{testimonial.name}</p>
+                    <p className={`text-xs ${BLUE_TXT}`}>{testimonial.role}</p>
+                  </div>
+                </div>
+                <p className="text-xs leading-relaxed text-neutral-500">&ldquo;{testimonial.text}&rdquo;</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <footer className="border-t border-neutral-200 bg-white">
         <div className="mx-auto grid max-w-5xl gap-10 px-6 py-14 md:grid-cols-2">

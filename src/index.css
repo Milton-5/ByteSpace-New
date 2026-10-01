@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/satoshi');
 @import 'tailwindcss';
 
 :root {
   --font-poppins: 'Poppins', 'Segoe UI', sans-serif;
   --font-outfit: 'Outfit', 'Segoe UI', sans-serif;
+  --font-satoshi: 'Satoshi', 'Outfit', 'Segoe UI', sans-serif;
 }
 
 html {
@@ -15,7 +17,7 @@ body {
   min-width: 320px;
   background: #f8fafc;
   color: #0f172a;
-  font-family: var(--font-outfit);
+  font-family: var(--font-satoshi);
   -webkit-font-smoothing: antialiased;
 }
 
